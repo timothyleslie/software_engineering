@@ -1,64 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="20dp">
 
-    <TextView
-        android:id="@+id/tv_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="金额"
-        android:textSize="20sp"
-        android:paddingTop="20dp"
-        android:textColor="@color/colorBlack"/>
-
-    <EditText
-        android:id="@+id/et_amount"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入金额"
-        android:gravity="right"
-        />
+        android:id="@+id/ll_in_out"
+        android:orientation="horizontal"
+        >
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/radio"
+            >
 
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收入"
+                android:layout_weight="0.5"
+                />
 
-    <TextView
-        android:id="@+id/tv_class"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_amount"
-        android:text="类别"
-        android:textSize="20sp"
-        android:paddingTop="10dp"
-        android:textColor="@color/colorBlack"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支出"
+                android:layout_weight="0.5"
+                />
 
-    <EditText
-        android:id="@+id/et_class"
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_amount"
-        android:hint="请输入类别"
-        android:gravity="right"
-        />
+        android:id="@+id/ll_amount"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_in_out"
+        >
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金额"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack"
+            android:layout_weight="0.5"/>
+
+        <EditText
+            android:id="@+id/et_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入金额"
+            android:layout_weight="0.5"
+            />
+    </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/tv_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_class"
-        android:text="时间"
-        android:textSize="20sp"
-        android:paddingTop="10dp"
-        android:textColor="@color/colorBlack"/>
-
-    <EditText
-        android:id="@+id/et_time"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_class"
-        android:hint="请输入时间"
-        android:gravity="right"
-        />
+        android:id="@+id/ll_class"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_amount">
+
+        <TextView
+            android:id="@+id/tv_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="类别"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_class_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_date"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_class">
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日期"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorBlack"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_date_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_time"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_date">
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时间"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorBlack"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_time_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_account"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_time">
+
+        <TextView
+            android:id="@+id/tv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账户"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorBlack"/>
+
+        <Spinner
+            android:id="@+id/sp_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_business"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_account">
+
+        <TextView
+            android:id="@+id/tv_business"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商家"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorBlack"/>
+
+        <EditText
+            android:id="@+id/et_business"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入商家"
+            android:gravity="right"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_user"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_business">
+
+        <TextView
+            android:id="@+id/tv_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorBlack"/>
+
+        <Spinner
+            android:id="@+id/sp_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_remarks"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_user">
+
+        <EditText
+            android:id="@+id/et_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="备注"
+            />
+    </LinearLayout>
+
 
 
 
