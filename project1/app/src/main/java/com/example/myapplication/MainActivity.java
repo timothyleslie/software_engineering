@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 //import com.example.myapplication.Adapter.RVAdapter;
 import com.example.myapplication.Adapter.MainRecyclerViewAdapter;
@@ -33,11 +36,32 @@ public class MainActivity extends AppCompatActivity {
     private LiveData<List<Bill>> bills;
     private RecyclerView recyclerView;
     private MainRecyclerViewAdapter recyclerViewAdapter;
+    private SharedPreferences mSharedPreferences;
+    private Typeface num_type, text_type;
+    private TextView tv_out, tv_out_num, tv_in, tv_in_num, tv_budget, tv_budget_num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        num_type = Typeface.createFromAsset(getAssets(), "fonts/DIN-Black.otf");
+        text_type = Typeface.createFromAsset(getAssets(), "fonts/PingFang-SC-Regular.ttf");
+
+        tv_out = mainBinding.mainTv1Out;
+        tv_out_num = mainBinding.mainTvOutNum;
+        tv_in = mainBinding.mainTvIn;
+        tv_in_num = mainBinding.mainTvInNum;
+        tv_budget = mainBinding.mainTvBudget;
+        tv_budget_num = mainBinding.mainTvBudgetNum;
+        tv_out.setTypeface(text_type);
+        tv_out_num.setTypeface(num_type);
+        tv_in.setTypeface(text_type);
+        tv_in_num.setTypeface(num_type);
+        tv_budget.setTypeface(text_type);
+        tv_budget_num.setTypeface(num_type);
+
+
+
 
         billViewModel =  new ViewModelProvider(this).get(BillViewModel.class);
         recyclerView = mainBinding.rvMain;
@@ -55,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mBtnStatistics = findViewById(R.id.btn_statistics);
+        mBtnStatistics.setTypeface(text_type);
         mBtnStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mBtnSetting= findViewById(R.id.btn_setting);
+        mBtnSetting.setTypeface(text_type);
         mBtnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
 //        mRv.setLayoutManager(llm);
 //        RVAdapter rvAdapter = new RVAdapter(persons);
 //        mRv.setAdapter(rvAdapter);
+        mSharedPreferences = getSharedPreferences("data",MODE_PRIVATE);
+        String budget =mSharedPreferences.getString("budget","").toString();
 
     }
 

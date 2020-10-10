@@ -11,13 +11,9 @@ import com.example.myapplication.R;
 
 public class MyExtendableListViewAdapter extends BaseExpandableListAdapter {
     private Context mcontext;
-    public String[] groupString = {"射手", "辅助", "坦克", "法师"};
+    public String[] groupString = {"饮食"};
     public String[][] childString = {
-            {"孙尚香", "后羿", "马可波罗", "狄仁杰"},
-            {"孙膑", "蔡文姬", "鬼谷子", "杨玉环"},
-            {"张飞", "廉颇", "牛魔", "项羽"},
-            {"诸葛亮", "王昭君", "安琪拉", "干将"}
-
+            {"早餐", "午餐", "晚餐"}
     };
 
     @Override

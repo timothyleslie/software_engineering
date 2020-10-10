@@ -11,34 +11,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="10dp">
-
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
             android:id="@+id/btn_statistics"
-            android:text="统计" />
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bottom_confirm_bg"
+            android:gravity="center"
+            android:text="统计"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
         <Button
             android:id="@+id/btn_setting"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="setting"
-            android:layout_alignParentRight="true" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bottom_confirm_bg"
+            android:gravity="center"
+            android:text="设置"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            />
 
         <ImageButton
+            android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_add"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/plus" />
+            android:background="@drawable/plus"
+            android:layout_marginBottom="10dp"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_statistics"
-            android:paddingTop="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             app:cardBackgroundColor="@color/colorTheme"
             app:cardCornerRadius="12dp"
             app:cardElevation="12dp">
@@ -53,83 +63,91 @@
                 <RelativeLayout
                     android:id="@+id/ll_1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/btn_statistics"
-                    android:orientation="vertical"
-                    android:paddingTop="20dp">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/main_tv1"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/main_tv_out_num"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/btn_statistics"
-                        android:layout_weight="0.5"
                         android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0元"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/main_tv1_out"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_below="@+id/main_tv_out_num"
                         android:paddingTop="10dp"
                         android:text="支出"
-                        android:textSize="30sp" />
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/main_tv2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/btn_statistics"
-                        android:layout_weight="0.5"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:text="收入"
-                        android:textSize="30sp" />
+
+
+
 
                 </RelativeLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/ll_2"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ll_1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/main_tv_out"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:text="0元"
-                        android:textSize="30sp" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    >
 
                     <TextView
                         android:id="@+id/main_tv_in"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
                         android:gravity="center"
-                        android:paddingTop="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorTextWhite"
+                        android:text="收入:"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/main_tv_in_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/main_tv_in"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="@color/colorTextWhite"
                         android:text="0元"
-                        android:textSize="30sp" />
+                        android:textSize="20sp" />
 
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/main_tv_budget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/main_tv_in_num"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="预算:"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorTextWhite"/>
 
-                <TextView
-                    android:id="@+id/main_tv3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ll_2"
-                    android:gravity="center"
-                    android:paddingTop="20dp"
-                    android:text="剩余预算"
-                    android:textSize="30sp" />
+                    <TextView
+                        android:id="@+id/main_tv_budget_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/main_tv_in_num"
+                        android:layout_toRightOf="@+id/main_tv_budget"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:text="0元"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorTextWhite"/>
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/main_tv_budget"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/main_tv3"
-                    android:gravity="center"
-                    android:text="0元"
-                    android:textSize="30sp" />
+
 
             </LinearLayout>
 
