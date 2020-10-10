@@ -1,112 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/btn_statistics"
-        android:text="统计" />
+    <data>
 
-    <Button
-        android:id="@+id/btn_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="setting"
-        android:layout_alignParentRight="true"/>
+    </data>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_add"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/plus"/>
-
-    <LinearLayout
-        android:id="@+id/ll_1"
+    <RelativeLayout
+        android:id="@+id/rl_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_statistics"
-        android:paddingTop="20dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:paddingTop="10dp">
 
-        <TextView
-            android:id="@+id/main_tv1"
+        <Button
             android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/btn_statistics"
+            android:text="统计" />
+
+        <Button
+            android:id="@+id/btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="setting"
+            android:layout_alignParentRight="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_add"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/plus" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_statistics"
-            android:paddingTop="10dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="支出"
-            android:textSize="30sp"/>
+            android:paddingTop="30dp"
+            app:cardBackgroundColor="@color/colorTheme"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="12dp">
 
-        <TextView
-            android:id="@+id/main_tv2"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/ll_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_statistics"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:id="@+id/main_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btn_statistics"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="支出"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/main_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btn_statistics"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="收入"
+                        android:textSize="30sp" />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/main_tv_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="0元"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/main_tv_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="0元"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/main_tv3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_2"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:text="剩余预算"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/main_tv_budget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/main_tv3"
+                    android:gravity="center"
+                    android:text="0元"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_statistics"
-            android:paddingTop="10dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="收入"
-            android:textSize="30sp"/>
+            android:layout_above="@+id/btn_add"
 
-    </LinearLayout>
+            android:layout_below="@+id/cv"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="-2dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="1dp"></androidx.recyclerview.widget.RecyclerView>
 
-
-    <LinearLayout
-        android:id="@+id/ll_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_1"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/main_tv_out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="0元"
-            android:textSize="30sp"/>
-
-        <TextView
-            android:id="@+id/main_tv_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="0元"
-            android:textSize="30sp"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_tv3"
-        android:layout_below="@+id/ll_2"
-        android:paddingTop="20dp"
-        android:gravity="center"
-        android:text="剩余预算"
-        android:textSize="30sp"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_tv_budget"
-        android:layout_below="@+id/main_tv3"
-        android:gravity="center"
-        android:text="0元"
-        android:textSize="30sp"
-        />
-
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

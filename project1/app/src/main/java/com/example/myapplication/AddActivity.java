@@ -1,28 +1,55 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.myapplication.Adapter.MyExtendableListViewAdapter;
+import com.example.myapplication.database.Bill;
+import com.example.myapplication.database.BillViewModel;
+import com.example.myapplication.databinding.ActivityAddBinding;
+
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class AddActivity extends AppCompatActivity {
+    private ActivityAddBinding addBinding;
+    private BillViewModel billViewModel;
+    private Bill bill;
+    private int etState, inType;
+    private RelativeLayout mRl;
+    private EditText mEtAmount, mEtRemarks;
     private TextView mTvDate, mTvTime;
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
@@ -38,6 +65,13 @@ public class AddActivity extends AppCompatActivity {
     private MyExtendableListViewAdapter myExtendableListViewAdapter;
     private  boolean isShow;
     private PopupWindow popupWindow;
+    private RadioGroup mRvGroup;
+
+    private int groupPos, childPos;
+    private String date, time;
+    private Button mBtnSave;
+
+
 
     public String[][] childString = {
             {"孙尚香", "后羿", "马可波罗", "狄仁杰"},
@@ -50,6 +84,16 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        addBinding = DataBindingUtil.setContentView(this, R.layout.activity_add);
+
+        billViewModel = new ViewModelProvider(this).get(BillViewModel.class);
+        bill = new Bill();
+
+        mRvGroup = addBinding.radioGroup;
+        mEtAmount = addBinding.etAmount;
+        mTvTime = addBinding.tvTime;
+        mTvDate = addBinding.tvDate;
+        mEtRemarks = addBinding.etRemarks;
 
         //choose account
         spinner_account = findViewById(R.id.sp_account);
@@ -62,14 +106,13 @@ public class AddActivity extends AppCompatActivity {
         spinner_user.setAdapter(adapter_user);
 
         //choose date
-        mTvDate = findViewById(R.id.tv_date_select);
         initDate();
 
         //set date listener
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = String.format("%d 年 %d 月 %d 日", year, month+1, dayOfMonth);
+                date = String.format("%d-%d-%d", year, month+1, dayOfMonth);
                 mTvDate.setText(date);
             }
         };
@@ -84,13 +127,12 @@ public class AddActivity extends AppCompatActivity {
 
 
         //choose time
-        mTvTime = findViewById(R.id.tv_time_select);
         initTime();
 
         timeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                String time = String.format("%d 时 %d 分", hourOfDay, minute);
+                time = String.format("%d:%d:00", hourOfDay, minute);
                 mTvTime.setText(time);
             }
         };
@@ -131,8 +173,38 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 mTvClass.setText(childString[groupPosition][childPosition]);
+                childPos = childPosition;
                 return true;
 
+            }
+        });
+
+
+        //save data
+        mBtnSave = addBinding.btnSave;
+        mBtnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    saveData();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(AddActivity.this, bill.getAmount().toString(), Toast.LENGTH_LONG).show();
+
+//                Intent intent = new Intent(AddActivity.this, MainActivity.class);
+//                startActivity(intent);
+            }
+        });
+        billViewModel.getAllBills().observe(this, new Observer<List<Bill>>() {
+            @Override
+            public void onChanged(List<Bill> bills) {
+                if(bills.size()!=0){
+                    Log.d("bills:", bills.get(0).getAmount().toString());
+                }
+                else {
+                    Log.d("fail:", "None");
+                }
             }
         });
     }
@@ -142,20 +214,20 @@ public class AddActivity extends AppCompatActivity {
     public void initDate(){
         Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
+        mMonth = c.get(Calendar.MONTH) + 1;
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        String date = String.format("%d 年 %d 月 %d 日", mYear, mMonth+1, mDay);
+        date = String.format("%d-%d-%d", mYear, mMonth, mDay);
         mTvDate.setText(date);
     }
 
     //init time
     public void initTime(){
         Calendar calendar = Calendar.getInstance();
-        mHour = calendar.get(Calendar.HOUR_OF_DAY);
+        mHour = (calendar.get(Calendar.HOUR_OF_DAY) + 8) % 24;
         mMinute = calendar.get(Calendar.MINUTE);
 
-        String time = String.format("%d 时 %d 分", mHour, mMinute);
+        time = String.format("%d:%d:00", mHour, mMinute);
         mTvTime.setText(time);
     }
 
@@ -170,5 +242,42 @@ public class AddActivity extends AppCompatActivity {
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.setFocusable(true);
         popupWindow.setContentView(view);
+    }
+
+    private void saveData() throws ParseException {
+
+        //get value of isIncome
+        RadioButton rb = findViewById(mRvGroup.getCheckedRadioButtonId());
+        String text = (String) rb.getText();
+        boolean isIncome;
+        if(text == "收入"){
+            isIncome = true;
+        }else{
+            isIncome = false;
+        }
+        bill.setIncome(isIncome);
+
+        //get value of amount
+        String context = mEtAmount.getText().toString();
+        BigDecimal amount = new BigDecimal(context);
+        bill.setAmount(amount);
+
+       //get value of class
+       bill.setType(childPos);
+
+       //get value of time
+        String datetime = date +' '+ time;
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date time_value = sdf.parse(datetime);
+        bill.setTime(time_value);
+
+       //get value of remarks
+        String remarks = mEtRemarks.getText().toString();
+        bill.setRemark(remarks);
+
+
+        billViewModel.insertBills(bill);
+
+
     }
 }
