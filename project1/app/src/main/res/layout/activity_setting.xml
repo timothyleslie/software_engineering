@@ -1,38 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#555555"
+    android:orientation="vertical">
 
-    <Button
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_class"
-        android:text="类别"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:src="@drawable/setting"
+        android:background="#c7ede9">
 
-    <Button
+
+    </ImageView>
+
+    <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_account"
-        android:layout_below="@+id/btn_class"
-        android:text="账户"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <Button
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_class"
+            android:drawableTop="@drawable/type"
+            android:layout_weight="1"
+            android:text="类别"
+            android:background="#afd7ed"
+
+            />
+
+        <Button
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_person"
+            android:drawableTop="@drawable/person"
+            android:layout_weight="1"
+            android:background="#5ca7ba"
+            android:text="账户" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_budget"
-        android:layout_below="@+id/btn_account"
-        android:text="预算"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_clock"
-        android:layout_below="@+id/btn_budget"
-        android:text="定时提醒"
-        />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_budget"
+            android:drawableTop="@drawable/account"
+            android:layout_weight="1"
+            android:background="#d9742b"
+            android:text="预算"
 
-</RelativeLayout>
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_clock"
+            android:drawableTop="@drawable/time"
+            android:layout_weight="1"
+            android:background="#f6f6f6"
+            android:text="定时提醒"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
