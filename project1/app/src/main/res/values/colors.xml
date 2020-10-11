@@ -5,9 +5,11 @@
 <!--    <color name="colorAccent">#03DAC5</color>-->
     <color name="colorgreen">#CCFF99</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorTheme">#8AD5C1</color>
+    <color name="colorTheme">#03DAC5</color>
+    <color name="colorSave">#8AD5C1</color>
     <color name="colorPrimary">#3d3e51</color>
-
+    <color name="colorStart">#43e97b</color>
+    <color name="colorEnd">#38f9d7</color>
     <color name="colorPrimaryDark">#3d3e51</color>
 
     <color name="colorAccent">#9576fc</color>

@@ -88,8 +88,8 @@ public class AddActivity extends AppCompatActivity {
 
         mRvGroup = addBinding.radioGroup;
         mEtAmount = addBinding.etAmount;
-        mTvTime = addBinding.tvTime;
-        mTvDate = addBinding.tvDate;
+        mTvTime = addBinding.tvTimeSelect;
+        mTvDate = addBinding.tvDateSelect;
         mEtRemarks = addBinding.etRemarks;
 
         //choose account
@@ -189,8 +189,8 @@ public class AddActivity extends AppCompatActivity {
                 }
                 Toast.makeText(AddActivity.this, bill.getAmount().toString(), Toast.LENGTH_LONG).show();
 
-//                Intent intent = new Intent(AddActivity.this, MainActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(AddActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         billViewModel.getAllBills().observe(this, new Observer<List<Bill>>() {
@@ -264,9 +264,9 @@ public class AddActivity extends AppCompatActivity {
 
        //get value of time
         String datetime = date +' '+ time;
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date time_value = sdf.parse(datetime);
-        bill.setTime(time_value);
+//        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date time_value = sdf.parse(datetime);
+        bill.setTime(new Date(System.currentTimeMillis()));
 
        //get value of remarks
         String remarks = mEtRemarks.getText().toString();

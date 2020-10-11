@@ -20,27 +20,42 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
+
             <RadioGroup
+                android:id="@+id/radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/radio_group">
+                android:paddingBottom="5dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                >
 
                 <RadioButton
                     android:id="@+id/rb_income"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="收入"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_tab_left"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="支出"
+                    android:checked="true"
+                    android:textColor="@color/selector_tab_text_color" />
 
                 <RadioButton
                     android:id="@+id/rb_expand"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="支出"
-                    android:layout_weight="0.5"
-                    android:checked="true" />
-
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_tab_right"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="收入"
+                    android:textColor="@color/selector_tab_text_color" />
             </RadioGroup>
 
         </LinearLayout>
@@ -93,7 +108,9 @@
                 android:id="@+id/tv_class_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:textSize="20sp"
+                android:textColor="@color/colorBlack"
+                 />
         </LinearLayout>
 
 
@@ -112,13 +129,15 @@
                 android:text="日期"
                 android:textSize="20sp"
                 android:textColor="@color/colorBlack"
-                android:layout_weight="0.5" />
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_date_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5" />
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
 
         </LinearLayout>
 
@@ -138,13 +157,15 @@
                 android:text="时间"
                 android:textSize="20sp"
                 android:textColor="@color/colorBlack"
-                android:layout_weight="0.5" />
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_time_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5" />
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                 />
 
         </LinearLayout>
 
