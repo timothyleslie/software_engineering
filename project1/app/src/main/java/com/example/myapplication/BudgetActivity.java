@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,14 +20,21 @@ public class BudgetActivity extends AppCompatActivity {
         private TextView mTvShow;*/
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor  mEditor;
+    private Typeface num_type, text_type;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
 
+        num_type = Typeface.createFromAsset(getAssets(), "fonts/DIN-Black.otf");
+        text_type = Typeface.createFromAsset(getAssets(), "fonts/PingFang-SC-Regular.ttf");
+
         mEtBudget =findViewById(R.id.et_budget);
+        mEtBudget.setTypeface(num_type);
         mBtnSave = findViewById(R.id.btn_save);
+        mBtnSave.setTypeface(text_type);
 /*        mBtnShow = findViewById(R.id.btn_show);
         mTvShow = findViewById(R.id.tv_show);*/
 

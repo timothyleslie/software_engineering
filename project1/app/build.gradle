@@ -52,4 +52,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation  'com.github.addappcn:android-pickers:2.0.0'
 }
